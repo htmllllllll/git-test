@@ -46,6 +46,38 @@ int main()
     const int iHp= 0x00000004;
     const int iMp=0x00000008;
     const int iCritical=0x00000010;
+    //즉 다 버프 시킬 때는 ||를 사용
+    int iBuf= iAttack|iHp|iCritical;
+    //연산자 축약형: 연산자를 줄여서 사용할 수 있다.
+    //xor: 10101^00100=10001
+    iBuf^=iHp;
+
+    cout <<"iAttack: "<<(iBuf&iAttack)<<endl;
+    cout <<"iAromor: "<<(iBuf&iArmor)<<endl;
+    /*
+     쉬프트 연산자: <<, >> 값 대 값으로 연산하여 값으로 나오게 한다.
+     이 ㅣ 연산자 또한 이진수의 단위를 연산하게 된다.
+     20<<2=80
+     20<<3=160
+     20을 2진수로 변환한다.
+     10100
+     20>>2=5;
+     20>>3=2;
+
+
+     */
+    int iHigh= 187;
+    int iLow=13560;
+    int iNumber= iHigh;
     
+
+    //iNumber에는 187이 들어가 있다. 이 값을 왼쪽 방향으로 16비트 이동시키면
+    //상위 16비트에 값이 들어가게 된다.
+    iNumber<<=16;
+    //하위 16비트를 채운다.
+    iNumber|=iLow;
+    //iHigh값을 출력한다.
+    cout <<"High: "<<(iNumber>>16)<<endl;
+    cout<<"Low: "<<(iNumber&0x0000ffff)<<endl;
     return 0;
 }
